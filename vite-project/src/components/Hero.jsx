@@ -1,28 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import "./Hero.css";
+
+// ✅ Use only this (no import image above)
+const phone = "https://via.placeholder.com/300x600?text=App+Preview";
 
 function Hero() {
-  const navigate = useNavigate();
-
-  const heroStyle = {
-    padding: "60px 20px",
-    textAlign: "center",
-    backgroundColor: "#e4e4e4",
-  };
-
-  const buttonStyle = {
-    padding: "10px 20px",
-    marginTop: "20px",
-    fontSize: "16px",
-    cursor: "pointer",
-  };
-
   return (
-    <section style={heroStyle}>
-      <h1>Fuel Delivered to Your Doorstep</h1>
-      <p>Fast, reliable and convenient fuel delivery services.</p>
-      <button style={buttonStyle} onClick={() => navigate("/contact")}>
-        Order Fuel
-      </button>
+    <section className="hero">
+      <div className="text-content">
+        <h1>Your Fuel. Delivered Fast.</h1>
+        <p>
+          OilTex provides on-demand fuel & gas delivery across Kenya — fast,
+          safe, and affordable.
+        </p>
+        <div className="hero-buttons">
+          <button className="google-btn">Google Play</button>
+          <button className="apple-btn">App Store</button>
+        </div>
+      </div>
+
+      <div className="image-content">
+        <img src={phone} alt="App Preview" />
+      </div>
     </section>
   );
 }
