@@ -1,8 +1,14 @@
-import './Footer.css';
-
 function Footer() {
+  const footerStyle = {
+    textAlign: "center",
+    padding: "20px",
+    backgroundColor: "#f0f0f0",
+    marginTop: "30px",
+    fontSize: "14px",
+  };
+
   return (
-    <footer className="footer">
+    <footer style={footerStyle}>
       <p>© {new Date().getFullYear()} Oiltex Solutions. All Rights Reserved.</p>
       <p>Fuel Delivery | Fast | Reliable | Affordable</p>
     </footer>
