@@ -6,14 +6,19 @@ function Navbar() {
 
   return (
     <nav className="navbar">
+      {/* Logo */}
       <div className="logo">FUELGO KENYA</div>
+
+      {/* Navigation Links */}
       <div className="nav-links">
+        <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/fuel-ride">Fuel My Ride</Link>
         <Link to="/fuel-boat">Fuel My Boat</Link>
         <Link to="/fuel-fleet">Fuel My Fleet</Link>
-        <Link to="/residential">Residential Condos</Link>
+        <Link to="/residential">Residential Areas</Link>
 
+        {/* Dropdown for Commercial */}
         <div
           className="dropdown"
           onMouseEnter={() => setShowCommercial(true)}
@@ -23,11 +28,16 @@ function Navbar() {
           {showCommercial && (
             <div className="dropdown-menu">
               <Link to="/commercial/generators">Generators</Link>
-              
               <Link to="/commercial/construction">Construction</Link>
             </div>
           )}
         </div>
+
+        {/* ✅ Orders Page Link */}
+        <Link to="/orders">Orders</Link>
+
+        {/* Optional Login */}
+        <Link to="/login">Login</Link>
       </div>
     </nav>
   );

@@ -14,7 +14,7 @@ import Residential from "./pages/Residential";
 import Generators from "./pages/commercial/Generators";
 import Construction from "./pages/commercial/Construction";
 import LoginPage from "./pages/LoginPage";
-import Orders from "./pages/Orders"; // ✅ Import Orders page
+import Orders from "./pages/Orders";
 
 function App() {
   return (
@@ -43,4 +43,5 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
+ 
