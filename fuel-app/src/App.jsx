@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import FuelRide from "./pages/FuelRide";
 import FuelBoat from "./pages/FuelBoat";
-import FuelMyFleet from "./pages/ FuelFleet";
+import FuelMyFleet from "./pages/FuelFleet";
 import Residential from "./pages/Residential";
 import Generators from "./pages/commercial/Generators";
 import Construction from "./pages/commercial/Construction";
@@ -20,28 +20,29 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        {/* General Pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<LoginPage />} />
+      <div className="container my-4">
+        <Routes>
+          {/* General Pages */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage />} />
 
-        {/* Fuel Pages */}
-        <Route path="/fuel-ride" element={<FuelRide />} />
-        <Route path="/fuel-boat" element={<FuelBoat />} />
-        <Route path="/fuel-fleet" element={<FuelMyFleet />} />
-        <Route path="/residential" element={<Residential />} />
+          {/* Fuel Pages */}
+          <Route path="/fuel-ride" element={<FuelRide />} />
+          <Route path="/fuel-boat" element={<FuelBoat />} />
+          <Route path="/fuel-fleet" element={<FuelMyFleet />} />
+          <Route path="/residential" element={<Residential />} />
 
-        {/* Commercial Pages */}
-        <Route path="/commercial/generators" element={<Generators />} />
-        <Route path="/commercial/construction" element={<Construction />} />
+          {/* Commercial Pages */}
+          <Route path="/commercial/generators" element={<Generators />} />
+          <Route path="/commercial/construction" element={<Construction />} />
 
-        {/* Orders Tracker */}
-        <Route path="/orders" element={<Orders />} />
-      </Routes>
+          {/* Orders Tracker */}
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
 
-export default App; 
- 
+export default App;
