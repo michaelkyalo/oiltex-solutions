@@ -23,27 +23,32 @@ function Generators() {
   };
 
   return (
-    <div className="fuel-page">
-      <h2>⚡ Generator Fueling</h2>
-      <p>Reliable diesel and petrol delivery for backup and industrial generators.</p>
+    <div className="container py-4">
+      <div className="card shadow-sm page-surface">
+        <div className="card-body">
+          <h2 className="card-title">⚡ Generator Fueling</h2>
+          <p className="card-text">Reliable diesel and petrol delivery for backup and industrial generators.</p>
 
-      <select value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
-        <option value="">Select Fuel Type</option>
-        <option value="petrol">Petrol</option>
-        <option value="diesel">Diesel</option>
-      </select>
+          <div className="mb-3">
+            <label className="form-label">Fuel Type</label>
+            <select className="form-select" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+              <option value="">Select Fuel Type</option>
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
+            </select>
+          </div>
 
-      <input
-        type="number"
-        placeholder="Enter litres"
-        value={liters}
-        onChange={(e) => setLiters(e.target.value)}
-      />
+          <div className="mb-3">
+            <label className="form-label">Litres</label>
+            <input className="form-control" type="number" placeholder="Enter litres" value={liters} onChange={(e) => setLiters(e.target.value)} />
+          </div>
 
-      <button onClick={handleOrder}>Order Fuel</button>
+          <button className="btn btn-danger" onClick={handleOrder}>Order Fuel</button>
 
-      {price > 0 && <p>Total Price: KSh {price.toLocaleString()}</p>}
-      {message && <p className="message">{message}</p>}
+          {price > 0 && <div className="mt-3 alert alert-warning">Total Price: KSh {price.toLocaleString()}</div>}
+          {message && <p className="message mt-2">{message}</p>}
+        </div>
+      </div>
     </div>
   );
 }

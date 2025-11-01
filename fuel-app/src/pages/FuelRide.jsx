@@ -27,51 +27,35 @@ function FuelMyRide() {
   };
 
   return (
-    <div className="fuel-ride-section">
-      <div className="fuel-info">
-        {/* 🚛 Fuel Truck Image */}
-        <img
-          
-          alt="Fuel Truck"
-          className="fuel-image"
-        />
+    <div className="container py-4">
+      <div className="card shadow-sm page-surface">
+        <div className="card-body">
+          <h2 className="card-title">Fuel My Ride </h2>
+          <p className="card-text">Order fuel directly to your vehicle anywhere in Kenya.</p>
 
-        <div className="fuel-text">
-          <h2>Fuel My Ride 🚛</h2>
-          <p>Order fuel directly to your vehicle anywhere in Kenya.</p>
+          <div className="mb-3">
+            <label className="form-label">Fuel Type</label>
+            <select className="form-select" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+              <option value="">Select Fuel Type</option>
+              <option value="petrol">Petrol</option>
+              <option value="diesel">Diesel</option>
+            </select>
+          </div>
 
-          {/* 🔹 Fuel Type Dropdown */}
-          <select
-            value={fuelType}
-            onChange={(e) => setFuelType(e.target.value)}
-          >
-            <option value="">Select Fuel Type</option>
-            <option value="petrol">Petrol</option>
-            <option value="diesel">Diesel</option>
-          </select>
+          <div className="mb-3">
+            <label className="form-label">Litres</label>
+            <input className="form-control" type="number" placeholder="Enter litres" value={liters} onChange={(e) => setLiters(e.target.value)} />
+          </div>
 
-          {/* 🔹 Litres Input */}
-          <input
-            type="number"
-            placeholder="Enter litres"
-            value={liters}
-            onChange={(e) => setLiters(e.target.value)}
-          />
+          <button className="btn btn-danger" onClick={handleOrder}>Order Fuel</button>
 
-          {/* 🔹 Order Button */}
-          <button onClick={handleOrder}>Order Fuel</button>
-
-          {/* 🔹 Price Display */}
           {price > 0 && (
-            <div className="price-box">
-              <p>
-                Total Price: <strong>KSh {price.toLocaleString()}</strong>
-              </p>
+            <div className="mt-3 alert alert-warning">
+              <p className="mb-0">Total Price: <strong>KSh {price.toLocaleString()}</strong></p>
             </div>
           )}
 
-          {/* 🔹 Message */}
-          {message && <p className="message">{message}</p>}
+          {message && <p className="message mt-2">{message}</p>}
         </div>
       </div>
     </div>

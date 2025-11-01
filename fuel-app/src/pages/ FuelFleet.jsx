@@ -26,7 +26,7 @@ function FuelMyFleet() {
         alt="Fleet"
         className="fuel-image"
       />
-      <h2>Fuel My Fleet 🚚</h2>
+      <h2>Fuel My Fleet </h2>
       <p>Subscribe for regular fueling for all your company vehicles.</p>
       <p>if you are a uber owner with several cars</p>
 
