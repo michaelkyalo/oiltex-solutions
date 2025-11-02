@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 function LoginPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,14 +14,14 @@ function LoginPage() {
     if (name && password) {
       localStorage.setItem("fuelgo_user", name); // save name/company
       setMessage("Login successful!");
-      navigate("/"); // Go to home page
+      navigate("/home"); // ✅ Go to home page after login
     } else {
       setMessage("Please enter your name/company and password");
     }
   };
 
   const handleGuest = () => {
-    navigate("/"); // Continue as guest
+    navigate("/home"); // ✅ Guest also goes to home
   };
 
   return (
@@ -55,12 +54,17 @@ function LoginPage() {
                   />
                 </div>
 
-                <button className="btn btn-danger w-100" type="submit">Login</button>
+                <button className="btn btn-danger w-100" type="submit">
+                  Login
+                </button>
               </form>
 
               {message && <p className="message mt-3">{message}</p>}
 
-              <button className="btn btn-outline-secondary w-100 mt-2" onClick={handleGuest}>
+              <button
+                className="btn btn-outline-secondary w-100 mt-2"
+                onClick={handleGuest}
+              >
                 Continue as Guest
               </button>
             </div>

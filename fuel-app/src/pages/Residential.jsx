@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import background from "../assets/residence.png"; // ✅ Import the image
 
 function Residential() {
   const [fuelType, setFuelType] = useState("");
@@ -20,15 +20,30 @@ function Residential() {
   };
 
   return (
-    <div className="container py-4">
-      <div className="card shadow-sm page-surface">
+    <div
+      className="container py-4"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh", // full height
+      }}
+    >
+      <div className="card shadow-sm page-surface bg-light bg-opacity-75">
         <div className="card-body">
           <h2 className="card-title">Residential 🏠</h2>
-          <p className="card-text">Fuel delivery for home generators and equipment.</p>
+          <p className="card-text">
+            Fuel delivery for home generators and equipment.
+          </p>
 
           <div className="mb-3">
             <label className="form-label">Fuel Type</label>
-            <select className="form-select" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+            <select
+              className="form-select"
+              value={fuelType}
+              onChange={(e) => setFuelType(e.target.value)}
+            >
               <option value="">Select Fuel Type</option>
               <option value="petrol">Petrol</option>
               <option value="diesel">Diesel</option>
@@ -37,12 +52,24 @@ function Residential() {
 
           <div className="mb-3">
             <label className="form-label">Litres</label>
-            <input className="form-control" type="number" placeholder="Enter litres" value={liters} onChange={(e) => setLiters(e.target.value)} />
+            <input
+              className="form-control"
+              type="number"
+              placeholder="Enter litres"
+              value={liters}
+              onChange={(e) => setLiters(e.target.value)}
+            />
           </div>
 
-          <button className="btn btn-danger" onClick={handleOrder}>Order Fuel</button>
+          <button className="btn btn-danger" onClick={handleOrder}>
+            Order Fuel
+          </button>
 
-          {price > 0 && <div className="mt-3 alert alert-warning">Total Price: KSh {price}</div>}
+          {price > 0 && (
+            <div className="mt-3 alert alert-warning">
+              Total Price: KSh {price}
+            </div>
+          )}
           {message && <p className="message mt-2">{message}</p>}
         </div>
       </div>

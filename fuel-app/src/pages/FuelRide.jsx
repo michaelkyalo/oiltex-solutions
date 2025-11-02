@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import myRideImage from "../assets/myride.png"; // ✅ Import background image
 
 function FuelMyRide() {
   const [liters, setLiters] = useState("");
@@ -28,14 +28,29 @@ function FuelMyRide() {
 
   return (
     <div className="container py-4">
-      <div className="card shadow-sm page-surface">
+      <div
+        className="card shadow-sm page-surface"
+        style={{
+          backgroundImage: `url(${myRideImage})`, // ✅ Background image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          color: "white", // make text readable
+        }}
+      >
         <div className="card-body">
-          <h2 className="card-title">Fuel My Ride </h2>
-          <p className="card-text">Order fuel directly to your vehicle anywhere in Kenya.</p>
+          <h2 className="card-title">Fuel My Ride</h2>
+          <p className="card-text">
+            Order fuel directly to your vehicle anywhere in Kenya.
+          </p>
 
           <div className="mb-3">
             <label className="form-label">Fuel Type</label>
-            <select className="form-select" value={fuelType} onChange={(e) => setFuelType(e.target.value)}>
+            <select
+              className="form-select"
+              value={fuelType}
+              onChange={(e) => setFuelType(e.target.value)}
+            >
               <option value="">Select Fuel Type</option>
               <option value="petrol">Petrol</option>
               <option value="diesel">Diesel</option>
@@ -44,14 +59,24 @@ function FuelMyRide() {
 
           <div className="mb-3">
             <label className="form-label">Litres</label>
-            <input className="form-control" type="number" placeholder="Enter litres" value={liters} onChange={(e) => setLiters(e.target.value)} />
+            <input
+              className="form-control"
+              type="number"
+              placeholder="Enter litres"
+              value={liters}
+              onChange={(e) => setLiters(e.target.value)}
+            />
           </div>
 
-          <button className="btn btn-danger" onClick={handleOrder}>Order Fuel</button>
+          <button className="btn btn-danger" onClick={handleOrder}>
+            Order Fuel
+          </button>
 
           {price > 0 && (
             <div className="mt-3 alert alert-warning">
-              <p className="mb-0">Total Price: <strong>KSh {price.toLocaleString()}</strong></p>
+              <p className="mb-0">
+                Total Price: <strong>KSh {price.toLocaleString()}</strong>
+              </p>
             </div>
           )}
 

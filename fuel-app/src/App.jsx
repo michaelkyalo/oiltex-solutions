@@ -1,11 +1,13 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 // Components
 import Navbar from "./components/Navbar";
 
 // Pages
+
 import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
 import About from "./pages/About";
 import FuelRide from "./pages/FuelRide";
 import FuelBoat from "./pages/FuelBoat";
@@ -13,7 +15,6 @@ import FuelMyFleet from "./pages/FuelFleet";
 import Residential from "./pages/Residential";
 import Generators from "./pages/commercial/Generators";
 import Construction from "./pages/commercial/Construction";
-import LoginPage from "./pages/LoginPage";
 import Orders from "./pages/Orders";
 
 function App() {
@@ -22,10 +23,14 @@ function App() {
       <Navbar />
       <div className="container my-4">
         <Routes>
+          {/* 🔒 Redirect to login first */}
+    <Route path="/" element={<Navigate to="/home" replace />} />
+
+
           {/* General Pages */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
 
           {/* Fuel Pages */}
           <Route path="/fuel-ride" element={<FuelRide />} />

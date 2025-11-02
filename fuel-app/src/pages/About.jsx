@@ -1,14 +1,19 @@
 import React from "react";
+import fuelLogo from "../assets/fuel.png"; // adjust path based on your folder structure
 
 function About() {
   return (
-    <div className="container py-4 page-surface">
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title">About FUELGO KENYA</h2>
-          <p>We deliver fuel directly to your home, boat, or fleet with convenience and reliability.</p>
-        </div>
-      </div>
+    <div className="about container text-center py-5">
+      <img
+        src={fuelLogo}
+        alt="Fuel Go Kenya Logo"
+        style={{ width: "200px", marginBottom: "20px" }}
+      />
+      <h2>About Fuel Go Kenya</h2>
+      <p>
+        Fuel Go Kenya delivers fuel right to your doorstep — whether at home, on the road,
+        or for your business fleet. Our mission is to make refueling convenient, fast, and safe.
+      </p>
     </div>
   );
 }

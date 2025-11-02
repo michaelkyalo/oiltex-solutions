@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [showCommercial, setShowCommercial] = useState(false);
+  const navigate = useNavigate();
+  const user = localStorage.getItem("fuelgo_user"); // check if logged in
+
+  // 🧭 Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem("fuelgo_user");
+    navigate("/login");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-danger custom-navbar">
@@ -10,6 +18,7 @@ function Navbar() {
         <Link className="navbar-brand" to="/">
           FUELGO KENYA
         </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -23,38 +32,45 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {/* ✅ Main nav links */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
             <li className="nav-item">
               <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/fuel-ride">
                 Fuel My Ride
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/fuel-boat">
                 Fuel My Boat
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/fuel-fleet">
                 Fuel My Fleet
               </Link>
             </li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/residential">
                 Residential Areas
               </Link>
             </li>
 
+            {/* 🏢 Dropdown for commercial */}
             <li
               className="nav-item dropdown"
               onMouseEnter={() => setShowCommercial(true)}
@@ -87,11 +103,23 @@ function Navbar() {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
-            </li>
+            {/* ✅ Show Login or Logout depending on login state */}
+            {!user ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <button
+                  className="btn btn-outline-light ms-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
