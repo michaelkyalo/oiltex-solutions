@@ -1,0 +1,57 @@
+.dashboard-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  font-family: sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* perfect vertical centering */
+}
+
+.full-screen-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+  align-items: center;
+}
+
+.farm-card {
+  padding: 20px 60px;
+  border-radius: 15px;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.farm-card:hover {
+  transform: scale(1.05);
+}
+
+.scale-reports {
+  margin-top: 40px; /* appears below the cards only when a nested route is clicked */
+  z-index: 10;
+  width: 80%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  min-height: 0; /* initially empty */
+}
