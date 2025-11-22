@@ -5,15 +5,35 @@ function CropAdvisor() {
   const [soilType, setSoilType] = useState("");
   const [suggestion, setSuggestion] = useState("");
 
-  const handleSuggest = () => {
-    // Placeholder logic for suggestions
-    if (season && soilType) {
-      setSuggestion(
-        `Based on ${season} season and ${soilType} soil, recommended crops: Maize, Beans, Tomatoes.`
-      );
-    } else {
-      setSuggestion("Please select season and soil type.");
+  const recommendations = {
+    "long-rains": {
+      loamy: ["Maize", "Beans", "Sorghum"],
+      sandy: ["Watermelon", "Cowpeas"],
+      clay: ["Rice", "Arrowroots"]
+    },
+    "short-rains": {
+      loamy: ["Green grams", "Tomatoes"],
+      sandy: ["Onions", "Millet"],
+      clay: ["Sweet potatoes"]
+    },
+    dry: {
+      loamy: ["Drought-tolerant maize", "Sunflowers"],
+      sandy: ["Cassava", "Pumpkins"],
+      clay: ["Sorghum", "Pigeon peas"]
     }
+  };
+
+  const handleSuggest = () => {
+    if (!season || !soilType) {
+      setSuggestion("Please select a season and soil type.");
+      return;
+    }
+
+    const crops = recommendations[season][soilType];
+
+    setSuggestion(
+      `Recommended crops for ${season.replace("-", " ")} season and ${soilType} soil: ${crops.join(", ")}.`
+    );
   };
 
   return (

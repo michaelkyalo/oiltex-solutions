@@ -6,10 +6,28 @@ function CropTracker() {
   const [plantDate, setPlantDate] = useState("");
   const [harvestDate, setHarvestDate] = useState("");
 
+  const calculateAge = (plantDateStr) => {
+    const today = new Date();
+    const plantDate = new Date(plantDateStr);
+    const diffTime = today - plantDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays >= 0 ? diffDays : 0;
+  };
+
   const handleAddCrop = () => {
     if (!cropName || !plantDate || !harvestDate) return;
 
-    setCrops([...crops, { cropName, plantDate, harvestDate }]);
+    setCrops([
+      ...crops,
+      {
+        id: Date.now(),
+        cropName,
+        plantDate,
+        harvestDate,
+        age: calculateAge(plantDate),
+      },
+    ]);
+
     setCropName("");
     setPlantDate("");
     setHarvestDate("");
@@ -37,12 +55,15 @@ function CropTracker() {
         value={harvestDate}
         onChange={(e) => setHarvestDate(e.target.value)}
       />
-      <button onClick={handleAddCrop}>Add Crop</button>
+      <button onClick={handleAddCrop} style={{ marginLeft: "10px" }}>
+        Add Crop
+      </button>
 
-      <ul>
-        {crops.map((crop, idx) => (
-          <li key={idx}>
-            {crop.cropName} - Plant: {crop.plantDate}, Harvest: {crop.harvestDate}
+      <ul style={{ marginTop: "20px" }}>
+        {crops.map((crop) => (
+          <li key={crop.id}>
+            <strong>{crop.cropName}</strong> - Planted: {crop.plantDate}, Harvest:{" "}
+            {crop.harvestDate}, Age: {crop.age} day{crop.age !== 1 ? "s" : ""}
           </li>
         ))}
       </ul>
