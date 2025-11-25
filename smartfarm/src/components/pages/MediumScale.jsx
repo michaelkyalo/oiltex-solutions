@@ -14,6 +14,7 @@ import LivestockTracker from "./LivestockTracker";
 import TaskReminder from "./TaskReminder";
 import Weather from "./Weather";
 import CropAdvisor from "./CropAdvisor";
+import SoilPhAdvisor from "./SoilPhAdvisor"; // NEW
 
 // Images for each tab
 import cropImg from "../../assets/crop.png";
@@ -21,6 +22,7 @@ import livestockImg from "../../assets/livestock.png";
 import tasksImg from "../../assets/tasks.png";
 import weatherImg from "../../assets/weather.png";
 import advisorImg from "../../assets/advisor.png";
+import soilImg from "../../assets/soil.png"; // NEW
 
 function MediumScale() {
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ function MediumScale() {
     tasks: tasksImg,
     weather: weatherImg,
     advisor: advisorImg,
+    soilPh: soilImg, // NEW
   };
 
   const addSale = () => {
@@ -92,7 +95,15 @@ function MediumScale() {
           flexWrap: "wrap",
         }}
       >
-        {["profit", "cropTracker", "livestock", "tasks", "weather", "advisor"].map((tab) => (
+        {[
+          "profit",
+          "cropTracker",
+          "livestock",
+          "tasks",
+          "weather",
+          "advisor",
+          "soilPh", // NEW
+        ].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -115,7 +126,9 @@ function MediumScale() {
               ? "Tasks"
               : tab === "weather"
               ? "Weather"
-              : "Crop Advisor"}
+              : tab === "advisor"
+              ? "Crop Advisor"
+              : "Soil pH Advisor"}
           </button>
         ))}
       </div>
@@ -139,6 +152,7 @@ function MediumScale() {
           {activeTab === "tasks" && <TaskReminder />}
           {activeTab === "weather" && <Weather />}
           {activeTab === "advisor" && <CropAdvisor />}
+          {activeTab === "soilPh" && <SoilPhAdvisor />} {/* NEW */}
         </div>
       )}
 

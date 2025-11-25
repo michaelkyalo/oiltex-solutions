@@ -10,23 +10,24 @@ import {
   Legend,
 } from "recharts";
 
-// Large-scale components
 import CropAdvisor from "./CropAdvisor";
 import LivestockTracker from "./LivestockTracker";
 import TaskReminder from "./TaskReminder";
 import Weather from "./Weather";
 import CropTracker from "./CropTracker";
+import SoilPhAdvisor from "./SoilPhAdvisor";
 
-// Images for each tab
 import cropImg from "../../assets/crop.png";
 import livestockImg from "../../assets/livestock.png";
 import tasksImg from "../../assets/tasks.png";
 import weatherImg from "../../assets/weather.png";
 import advisorImg from "../../assets/advisor.png";
+import soilImg from "../../assets/soil.png";
 
 function LargeScale() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("profit");
+
   const [sales, setSales] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [saleAmount, setSaleAmount] = useState("");
@@ -38,6 +39,7 @@ function LargeScale() {
     tasks: tasksImg,
     weather: weatherImg,
     advisor: advisorImg,
+    soilPh: soilImg,
   };
 
   const addSale = () => {
@@ -64,7 +66,7 @@ function LargeScale() {
 
     data.push({
       month: `Entry ${i + 1}`,
-      profit: Math.abs(cumulativeProfit), // Always positive
+      profit: cumulativeProfit,
       sales: sale,
       expenses: expense,
     });
@@ -72,7 +74,7 @@ function LargeScale() {
 
   const totalSales = sales.reduce((a, b) => a + b, 0);
   const totalExpenses = expenses.reduce((a, b) => a + b, 0);
-  const totalProfit = Math.abs(totalSales - totalExpenses); // Always positive
+  const totalProfit = totalSales - totalExpenses;
 
   return (
     <div
@@ -99,7 +101,15 @@ function LargeScale() {
           flexWrap: "wrap",
         }}
       >
-        {["profit", "cropTracker", "livestock", "tasks", "weather", "advisor"].map((tab) => (
+        {[
+          "profit",
+          "cropTracker",
+          "livestock",
+          "tasks",
+          "weather",
+          "advisor",
+          "soilPh",
+        ].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
@@ -122,23 +132,26 @@ function LargeScale() {
               ? "Tasks"
               : tab === "weather"
               ? "Weather"
-              : "Crop Advisor"}
+              : tab === "advisor"
+              ? "Crop Advisor"
+              : "Soil pH Advisor"}
           </button>
         ))}
       </div>
 
-      {/* Floating Content on Background */}
+      {/* Floating content for non-profit tabs */}
       {activeTab !== "profit" && (
         <div
           style={{
-            backgroundColor: "rgba(0,0,0,0.55)",
-            padding: "25px",
-            borderRadius: "10px",
-            width: "80%",
-            maxWidth: "600px",
+            backgroundColor: "rgba(0,0,0,0.6)",
+            padding: "30px",
+            borderRadius: "12px",
+            width: "90%",
+            maxWidth: "700px",
             margin: "auto",
             color: "white",
             backdropFilter: "blur(4px)",
+            overflow: "visible",
           }}
         >
           {activeTab === "cropTracker" && <CropTracker />}
@@ -146,6 +159,7 @@ function LargeScale() {
           {activeTab === "tasks" && <TaskReminder />}
           {activeTab === "weather" && <Weather />}
           {activeTab === "advisor" && <CropAdvisor />}
+          {activeTab === "soilPh" && <SoilPhAdvisor />}
         </div>
       )}
 
@@ -181,7 +195,12 @@ function LargeScale() {
             <p>
               <strong>Total Expenses:</strong> {totalExpenses}
             </p>
-            <p>
+            <p
+              style={{
+                color: totalProfit < 0 ? "red" : "green",
+                fontWeight: "bold",
+              }}
+            >
               <strong>Profit:</strong> {totalProfit}
             </p>
           </div>
@@ -198,7 +217,7 @@ function LargeScale() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="profit" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="profit" stroke="#82ca9d" strokeWidth={3} />
               <Line type="monotone" dataKey="sales" stroke="#8884d8" />
               <Line type="monotone" dataKey="expenses" stroke="#ff7300" />
             </LineChart>

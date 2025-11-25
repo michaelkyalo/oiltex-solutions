@@ -15,6 +15,7 @@ import LivestockTracker from "./LivestockTracker";
 import TaskReminder from "./TaskReminder";
 import Weather from "./Weather";
 import CropAdvisor from "./CropAdvisor";
+import SoilPhAdvisor from "./SoilPhAdvisor"; // NEW
 
 // IMPORT SEPARATE IMAGES FOR EACH TAB
 import cropImg from "../../assets/crop.png";
@@ -22,6 +23,7 @@ import livestockImg from "../../assets/livestock.png";
 import tasksImg from "../../assets/tasks.png";
 import weatherImg from "../../assets/weather.png";
 import advisorImg from "../../assets/advisor.png";
+import soilImg from "../../assets/soil.png"; // NEW
 
 function SmallScale() {
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ function SmallScale() {
     tasks: tasksImg,
     weather: weatherImg,
     advisor: advisorImg,
+    soilPh: soilImg, // NEW
   };
 
   const addSale = () => {
@@ -100,6 +103,7 @@ function SmallScale() {
           "tasks",
           "weather",
           "advisor",
+          "soilPh", // NEW
         ].map((tab) => (
           <button
             key={tab}
@@ -123,7 +127,9 @@ function SmallScale() {
               ? "Tasks"
               : tab === "weather"
               ? "Weather"
-              : "Crop Advisor"}
+              : tab === "advisor"
+              ? "Crop Advisor"
+              : "Soil pH Advisor"}
           </button>
         ))}
       </div>
@@ -147,6 +153,7 @@ function SmallScale() {
           {activeTab === "tasks" && <TaskReminder />}
           {activeTab === "weather" && <Weather />}
           {activeTab === "advisor" && <CropAdvisor />}
+          {activeTab === "soilPh" && <SoilPhAdvisor />} {/* NEW */}
         </div>
       )}
 

@@ -9,9 +9,9 @@ import CropTracker from "./components/pages/CropTracker";
 import Weather from "./components/pages/Weather";
 import ProfitChart from "./components/pages/ProfitChart";
 import TaskReminder from "./components/pages/TaskReminder";
-import Market from "./components/pages/Market";
-import Inventory from "./components/pages/Inventory";
+import Inventory from "./components/pages/Inventory"; // keep inventory
 import LivestockTracker from "./components/pages/LivestockTracker";
+
 function App() {
   return (
     <BrowserRouter>
