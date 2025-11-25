@@ -17,12 +17,19 @@ import Weather from "./Weather";
 import CropTracker from "./CropTracker";
 import SoilPhAdvisor from "./SoilPhAdvisor";
 
+// NEW large-scale components (only remaining ones)
+import WorkerManager from "./WorkManager";
+import MachineryTracker from "./MachineryTracker";
+
+// Images
 import cropImg from "../../assets/crop.png";
 import livestockImg from "../../assets/livestock.png";
 import tasksImg from "../../assets/tasks.png";
 import weatherImg from "../../assets/weather.png";
 import advisorImg from "../../assets/advisor.png";
 import soilImg from "../../assets/soil.png";
+import workersImg from "../../assets/workers.png";
+import tractorImg from "../../assets/tractor.png";
 
 function LargeScale() {
   const navigate = useNavigate();
@@ -33,6 +40,7 @@ function LargeScale() {
   const [saleAmount, setSaleAmount] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
 
+  // BACKGROUND IMAGES PER TAB
   const tabBackgrounds = {
     cropTracker: cropImg,
     livestock: livestockImg,
@@ -40,6 +48,8 @@ function LargeScale() {
     weather: weatherImg,
     advisor: advisorImg,
     soilPh: soilImg,
+    workers: workersImg,
+    machinery: tractorImg,
   };
 
   const addSale = () => {
@@ -89,10 +99,10 @@ function LargeScale() {
       }}
     >
       <h1 style={{ color: activeTab !== "profit" ? "white" : "black" }}>
-        Large Scale Farm
+        Large Scale Farm Management System
       </h1>
 
-      {/* Tabs */}
+      {/* TABS */}
       <div
         style={{
           display: "flex",
@@ -109,6 +119,8 @@ function LargeScale() {
           "weather",
           "advisor",
           "soilPh",
+          "workers",
+          "machinery",
         ].map((tab) => (
           <button
             key={tab}
@@ -122,24 +134,24 @@ function LargeScale() {
               borderRadius: "5px",
             }}
           >
-            {tab === "profit"
-              ? "Sales / Expenses / Profit"
-              : tab === "cropTracker"
-              ? "Crop Tracker"
-              : tab === "livestock"
-              ? "Livestock"
-              : tab === "tasks"
-              ? "Tasks"
-              : tab === "weather"
-              ? "Weather"
-              : tab === "advisor"
-              ? "Crop Advisor"
-              : "Soil pH Advisor"}
+            {
+              {
+                profit: "Profit",
+                cropTracker: "Crop Tracker",
+                livestock: "Livestock",
+                tasks: "Tasks",
+                weather: "Weather",
+                advisor: "Crop Advisor",
+                soilPh: "Soil pH",
+                workers: "Workers",
+                machinery: "Machinery",
+              }[tab]
+            }
           </button>
         ))}
       </div>
 
-      {/* Floating content for non-profit tabs */}
+      {/* CONTENT AREA */}
       {activeTab !== "profit" && (
         <div
           style={{
@@ -160,15 +172,17 @@ function LargeScale() {
           {activeTab === "weather" && <Weather />}
           {activeTab === "advisor" && <CropAdvisor />}
           {activeTab === "soilPh" && <SoilPhAdvisor />}
+          {activeTab === "workers" && <WorkerManager />}
+          {activeTab === "machinery" && <MachineryTracker />}
         </div>
       )}
 
-      {/* Profit Tab */}
+      {/* PROFIT TAB */}
       {activeTab === "profit" && (
         <div>
           <h2>Sales / Expenses / Profit</h2>
 
-          <div style={{ marginBottom: "10px" }}>
+          <div>
             <input
               type="number"
               placeholder="Enter Sale Amount"
@@ -178,7 +192,9 @@ function LargeScale() {
             <button onClick={addSale}>Add Sale</button>
           </div>
 
-          <div style={{ marginBottom: "10px" }}>
+          <br />
+
+          <div>
             <input
               type="number"
               placeholder="Enter Expense Amount"
@@ -195,12 +211,7 @@ function LargeScale() {
             <p>
               <strong>Total Expenses:</strong> {totalExpenses}
             </p>
-            <p
-              style={{
-                color: totalProfit < 0 ? "red" : "green",
-                fontWeight: "bold",
-              }}
-            >
+            <p style={{ color: totalProfit < 0 ? "red" : "green" }}>
               <strong>Profit:</strong> {totalProfit}
             </p>
           </div>
@@ -225,22 +236,20 @@ function LargeScale() {
         </div>
       )}
 
-      {/* Go Back Button */}
-      <div style={{ marginTop: "40px" }}>
-        <button
-          onClick={() => navigate("/dashboard")}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#22c55e",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Go Back Home
-        </button>
-      </div>
+      {/* Back to Dashboard */}
+      <button
+        onClick={() => navigate("/dashboard")}
+        style={{
+          marginTop: "40px",
+          padding: "10px 20px",
+          backgroundColor: "#22c55e",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+        }}
+      >
+        Home
+      </button>
     </div>
   );
 }

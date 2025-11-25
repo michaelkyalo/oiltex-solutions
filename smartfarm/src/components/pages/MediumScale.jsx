@@ -9,12 +9,14 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+
 import CropTracker from "./CropTracker";
 import LivestockTracker from "./LivestockTracker";
 import TaskReminder from "./TaskReminder";
 import Weather from "./Weather";
 import CropAdvisor from "./CropAdvisor";
-import SoilPhAdvisor from "./SoilPhAdvisor"; // NEW
+import SoilPhAdvisor from "./SoilPhAdvisor"; 
+import LivestockHealth from "./LivestockHealth"; // NEW
 
 // Images for each tab
 import cropImg from "../../assets/crop.png";
@@ -22,7 +24,7 @@ import livestockImg from "../../assets/livestock.png";
 import tasksImg from "../../assets/tasks.png";
 import weatherImg from "../../assets/weather.png";
 import advisorImg from "../../assets/advisor.png";
-import soilImg from "../../assets/soil.png"; // NEW
+import soilImg from "../../assets/soil.png";
 
 function MediumScale() {
   const navigate = useNavigate();
@@ -35,10 +37,11 @@ function MediumScale() {
   const tabBackgrounds = {
     cropTracker: cropImg,
     livestock: livestockImg,
+    livestockHealth: livestockImg, // same as livestock
     tasks: tasksImg,
     weather: weatherImg,
     advisor: advisorImg,
-    soilPh: soilImg, // NEW
+    soilPh: soilImg,
   };
 
   const addSale = () => {
@@ -99,10 +102,11 @@ function MediumScale() {
           "profit",
           "cropTracker",
           "livestock",
+          "livestockHealth", // NEW
           "tasks",
           "weather",
           "advisor",
-          "soilPh", // NEW
+          "soilPh",
         ].map((tab) => (
           <button
             key={tab}
@@ -116,19 +120,18 @@ function MediumScale() {
               borderRadius: "5px",
             }}
           >
-            {tab === "profit"
-              ? "Sales / Expenses / Profit"
-              : tab === "cropTracker"
-              ? "Crop Tracker"
-              : tab === "livestock"
-              ? "Livestock"
-              : tab === "tasks"
-              ? "Tasks"
-              : tab === "weather"
-              ? "Weather"
-              : tab === "advisor"
-              ? "Crop Advisor"
-              : "Soil pH Advisor"}
+            {
+              {
+                profit: "Sales / Expenses / Profit",
+                cropTracker: "Crop Tracker",
+                livestock: "Livestock",
+                livestockHealth: "Livestock Health", // NEW
+                tasks: "Tasks",
+                weather: "Weather",
+                advisor: "Crop Advisor",
+                soilPh: "Soil pH Advisor",
+              }[tab]
+            }
           </button>
         ))}
       </div>
@@ -149,10 +152,11 @@ function MediumScale() {
         >
           {activeTab === "cropTracker" && <CropTracker />}
           {activeTab === "livestock" && <LivestockTracker />}
+          {activeTab === "livestockHealth" && <LivestockHealth />} {/* NEW */}
           {activeTab === "tasks" && <TaskReminder />}
           {activeTab === "weather" && <Weather />}
           {activeTab === "advisor" && <CropAdvisor />}
-          {activeTab === "soilPh" && <SoilPhAdvisor />} {/* NEW */}
+          {activeTab === "soilPh" && <SoilPhAdvisor />}
         </div>
       )}
 
