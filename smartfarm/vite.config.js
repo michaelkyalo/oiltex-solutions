@@ -3,8 +3,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  build: {
-    outDir: 'dist',       // default is 'dist', Vercel expects this
-    emptyOutDir: true,    // clear dist folder before build
-  },
+  server: {
+    proxy: {
+      '/api': 'http://127.0.0.1:5000'
+    }
+  }
 });

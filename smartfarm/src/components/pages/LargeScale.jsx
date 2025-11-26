@@ -22,14 +22,14 @@ import WorkerManager from "./WorkManager";
 import MachineryTracker from "./MachineryTracker";
 
 // Images
-import cropImg from "../../assets/crop.png";
-import livestockImg from "../../assets/livestock.png";
-import tasksImg from "../../assets/tasks.png";
-import weatherImg from "../../assets/weather.png";
-import advisorImg from "../../assets/advisor.png";
-import soilImg from "../../assets/soil.png";
-import workersImg from "../../assets/workers.png";
-import tractorImg from "../../assets/tractor.png";
+import cropImg from "../../assets/crop.jpg";
+import livestockImg from "../../assets/livestock.jpg";
+import tasksImg from "../../assets/tasks.jpg";
+import weatherImg from "../../assets/weather.jpg";
+import advisorImg from "../../assets/advisor.jpg";
+import soilImg from "../../assets/soil.jpg";
+import workersImg from "../../assets/workers.jpg";
+import tractorImg from "../../assets/tractor.jpg";
 
 function LargeScale() {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import "./Dashboard.css";
-import farmerImage from "../../assets/farmer.png";
+import farmerImage from "../../assets/farmer.jpg";
 
 function Dashboard() {
   const navigate = useNavigate();

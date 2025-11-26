@@ -19,12 +19,12 @@ import SoilPhAdvisor from "./SoilPhAdvisor";
 import LivestockHealth from "./LivestockHealth"; // NEW
 
 // Images for each tab
-import cropImg from "../../assets/crop.png";
-import livestockImg from "../../assets/livestock.png";
-import tasksImg from "../../assets/tasks.png";
-import weatherImg from "../../assets/weather.png";
-import advisorImg from "../../assets/advisor.png";
-import soilImg from "../../assets/soil.png";
+import cropImg from "../../assets/crop.jpg";
+import livestockImg from "../../assets/livestock.jpg";
+import tasksImg from "../../assets/tasks.jpg";
+import weatherImg from "../../assets/weather.jpg";
+import advisorImg from "../../assets/advisor.jpg";
+import soilImg from "../../assets/soil.jpg";
 
 function MediumScale() {
   const navigate = useNavigate();

@@ -18,12 +18,12 @@ import CropAdvisor from "./CropAdvisor";
 import SoilPhAdvisor from "./SoilPhAdvisor"; // NEW
 
 // IMPORT SEPARATE IMAGES FOR EACH TAB
-import cropImg from "../../assets/crop.png";
-import livestockImg from "../../assets/livestock.png";
-import tasksImg from "../../assets/tasks.png";
-import weatherImg from "../../assets/weather.png";
-import advisorImg from "../../assets/advisor.png";
-import soilImg from "../../assets/soil.png"; // NEW
+import cropImg from "../../assets/crop.jpg";
+import livestockImg from "../../assets/livestock.jpg";
+import tasksImg from "../../assets/tasks.jpg";
+import weatherImg from "../../assets/weather.jpg";
+import advisorImg from "../../assets/advisor.jpg";
+import soilImg from "../../assets/soil.jpg"; // NEW
 
 function SmallScale() {
   const navigate = useNavigate();
